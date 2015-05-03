@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LAZ</string>
+    <string name="action_start">Start</string>
+    <string name="action_stop">Stop</string>
+    <string name="phase_extinguish_safe">Extinguish / Rescue</string>
+    <string name="phase_first_switch">First Lid</string>
+    <string name="phase_overflow">Time Exceeded</string>
+    <string name="phase_preparation">Preparation</string>
+    <string name="title_activity_main">LAZ</string>
+</resources>

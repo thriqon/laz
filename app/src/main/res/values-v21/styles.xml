@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <item name="android:actionBarStyle">@style/myactionbar</item>
+    </style>
+
+    <style name="CircleTheme">
+        <item name="backgroundArcColor">@android:color/background_light</item>
+    </style>
+
+    <style name="myactionbar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/primaryColor</item>
+    </style>
+
+    <color name="primaryColor">#03A9F4</color>
+
+    <color name="stopped_color">@color/primaryColor</color>
+
+</resources>

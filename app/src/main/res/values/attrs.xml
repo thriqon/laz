@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="circle_view">
+        <attr name="arcWidth" format="dimension" />
+        <attr name="backgroundArcColor" format="color" />
+        <attr name="foregroundArcColor" format="color" />
+        <attr name="progress" format="float" />
+
+        <attr name="textColor" format="color" />
+        <attr name="text" format="string" />
+        <attr name="textSize" format="dimension" />
+    </declare-styleable>
+</resources>
