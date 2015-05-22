@@ -1,5 +1,7 @@
 package de.jonasw.laz.phases;
 
+import java.util.Locale;
+
 /**
  * Created by thriqon on 5/1/15.
  */
@@ -12,8 +14,8 @@ public class NormalPhase extends Phase {
     }
 
     @Override
-    public String formatTime(int time) {
-        return String.format(FORMAT_NORMAL, time);
+    public String formatTime(int time, Locale locale) {
+        return String.format(locale, FORMAT_NORMAL, time);
     }
 
     @Override

@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import de.jonasw.laz.clockface.CircleView;
 import de.jonasw.laz.phases.Phase;
 
@@ -99,7 +101,7 @@ public class Timetaking extends Activity implements SharedPreferences.OnSharedPr
         return Color.HSVToColor(hsv);
     }
 
-    public void restartRun() {
+    private void restartRun() {
         Intent serviceStart = new Intent(this, TimerService.class);
         startService(serviceStart);
     }
@@ -111,9 +113,11 @@ public class Timetaking extends Activity implements SharedPreferences.OnSharedPr
 
         running = sharedPreferences.getBoolean(TimerService.RUNNING, false);
 
+        Locale locale = getResources().getConfiguration().locale;
+
         int diffS = sharedPreferences.getInt(TimerService.DIFF_S_KEY, 0);
         Phase p = Phase.getPhaseFor(diffS);
-        circle.setText(p.formatTime(diffS));
+        circle.setText(p.formatTime(diffS, locale));
         phaseDisplay.setText(p.getTitle());
 
         if (running) {

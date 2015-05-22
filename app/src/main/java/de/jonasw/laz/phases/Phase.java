@@ -2,6 +2,7 @@ package de.jonasw.laz.phases;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import de.jonasw.laz.R;
 
@@ -27,13 +28,13 @@ public abstract class Phase {
         return colorId;
     }
 
-    public int getStart() {
+    int getStart() {
         return start;
     }
 
     private static final List<Phase> phases = new LinkedList<>();
 
-    public abstract String formatTime(int time);
+    public abstract String formatTime(int time, Locale locale);
     public abstract long[] getBeginningVibrationPattern();
 
 

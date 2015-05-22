@@ -1,6 +1,7 @@
 package de.jonasw.laz;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,6 +14,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 import de.jonasw.laz.phases.Phase;
 
@@ -54,11 +56,13 @@ public class TimerService extends Service implements SharedPreferences.OnSharedP
         launchMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingLaunchMain = PendingIntent.getActivity(this, 0, launchMain, PendingIntent.FLAG_CANCEL_CURRENT);
 
+        Locale locale = getResources().getConfiguration().locale;
+
         Notification.Builder builder = new Notification.Builder(this);
         builder
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText(current.formatTime(diff) + " - " + getString(current.getTitle()))
+                .setContentText(current.formatTime(diff, locale) + " - " + getString(current.getTitle()))
                 .setOngoing(true)
                 .setContentIntent(pendingLaunchMain)
                 .setAutoCancel(false)
@@ -78,19 +82,26 @@ public class TimerService extends Service implements SharedPreferences.OnSharedP
             builder.setShowWhen(false);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder
-                    .setColor(getResources().getColor(current.getColorId()))
-                    .setVisibility(Notification.VISIBILITY_PUBLIC);
+            setColorAndVisibilityOn(builder, current);
         }
 
         Notification notification;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             notification = builder.build();
         } else {
+            //noinspection deprecation
             notification = builder.getNotification();
         }
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setColorAndVisibilityOn(Notification.Builder builder, Phase current) {
+        builder
+                .setColor(getResources().getColor(current.getColorId()))
+                .setVisibility(Notification.VISIBILITY_PUBLIC);
+    }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -157,6 +168,7 @@ public class TimerService extends Service implements SharedPreferences.OnSharedP
     public long getStartTime() {
         return prefs.getLong(START_TIME_KEY, 0);
     }
+
     public void setStartTime(long v) {
         prefs
                 .edit()

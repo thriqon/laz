@@ -8,7 +8,7 @@ android:
     - android-14
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-14
-    
+
 env:
   matrix:
     - ANDROID_VERSION=14

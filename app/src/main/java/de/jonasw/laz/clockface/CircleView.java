@@ -148,7 +148,7 @@ public class CircleView extends View {
         return progress * 3.6f;
     }
 
-    RectF getCanvasBox() {
+    private RectF getCanvasBox() {
         final int xCenter = getWidth() / 2;
         final int yCenter = getHeight() / 2;
 
@@ -157,7 +157,7 @@ public class CircleView extends View {
         return new RectF(xCenter - r, yCenter - r, xCenter + r, yCenter + r);
     }
 
-    int getRadiusOfArcs() {
+    private int getRadiusOfArcs() {
         int minimum = Utils.min(getHeight(), getWidth());
         return Math.round(minimum * 0.4f);
     }
