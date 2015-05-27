@@ -6,14 +6,14 @@ android:
     - build-tools-21.1.2
     - android-21
     - android-22
-    - android-14
+    - android-15
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-22
-    - sys-img-armeabi-v7a-android-14
+    - sys-img-armeabi-v7a-android-15
 
 env:
   matrix:
-    - ANDROID_VERSION=14
+    - ANDROID_VERSION=15
     - ANDROID_VERSION=21
     - ANDROID_VERSION=22
 
